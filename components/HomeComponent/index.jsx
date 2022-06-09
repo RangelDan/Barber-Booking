@@ -1,34 +1,13 @@
+import Link from "next/link";
 import { useState } from "react";
+import { haircuts, openTimes } from '../../data/dropdownData'
 import Dropdown from "../../layout/Dropdown";
 import SharedButton from "../../layout/SharedButton";
 import TextField from "../../layout/TextField";
 
 export default function Home() {
     const [resData, setResData] = useState({});
-    const hairStyles = [' ', 'Fade', 'Mohawk', 'Taper', 'Combover', 'Shaved']
-    // TODO: MOVE BELOW TO WON FILE AND CONDITIONALLY RENDER
-    const times = [
-        ' ', 
-        '10:00',
-        '10:30',
-        '11:00',
-        '11:30',
-        '12:00',
-        '12:30',
-        '01:00',
-        '01:30',
-        '02:00',
-        '02:30',
-        '03:00',
-        '03:30',
-        '04:00',
-        '04:30',
-        '05:00',
-        '05:30',
-        '06:00',
-        '06:30',
-        '07:00'
-    ]
+
 
     const onResChange = (e) => {
         setResData({...resData, [e.target.id]: e.target.value })
@@ -49,11 +28,6 @@ export default function Home() {
             },
         })
     }
-    const getRes = async () => {
-        const response = await fetch('/api/reservations')
-        const data = await response.json()
-        console.log(JSON.stringify(data))
-    }
 
     return (
         <div>
@@ -70,7 +44,7 @@ export default function Home() {
                 id='haircut'
                 label='Style' 
                 onChange={onResChange}
-                options={hairStyles}
+                options={haircuts}
             />
             <TextField 
                 id='date'
@@ -84,17 +58,14 @@ export default function Home() {
                 id='time'
                 label='Time' 
                 onChange={onResChange}
-                options={times}
+                options={openTimes}
             />
             <div>
                 <SharedButton 
                     content='Reserve'
                     onclick={submitRes}
                 />
-                <SharedButton 
-                    content='See Reservations'
-                    onclick={getRes}
-                />
+                <Link href='/bookings'>TO RESERVATIONS</Link>
             </div>
             
         </div>
