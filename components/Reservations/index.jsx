@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { useState } from "react"
 import SharedButton from "../../layout/SharedButton"
+import Wrapper from "../../layout/Wrapper"
 
 export default function Reservations() {
     const [resData, setResData] = useState()
@@ -12,7 +13,7 @@ export default function Reservations() {
     }
    
     return (
-        <div>
+        <Wrapper>
             <h2>Todays Bookings</h2>
                 <SharedButton 
                     content='See Reservations'
@@ -28,6 +29,5 @@ export default function Reservations() {
                     </div>    
                 ))}
 
-        </div>
-    )
+        </Wrapper>    )
 }

@@ -4,7 +4,7 @@ import { haircuts, openTimes } from '../../data/dropdownData'
 import Dropdown from "../../layout/Dropdown";
 import SharedButton from "../../layout/SharedButton";
 import TextField from "../../layout/TextField";
-import styles from "../HomeComponent/index.module.scss";
+import Wrapper from "../../layout/Wrapper"
 // import validate from ""
 
 export default function Home() {
@@ -42,6 +42,12 @@ export default function Home() {
             date: resData.date,
             time: resData.time
         }
+        if (!resInfo.clientName || resInfo.clientName == " ") {
+            return false;
+        }
+        if (!resInfo.date || !resInfo.time || !resInfo.haircut) {
+            return false;
+        }
 
         // TODO: ADD VALIDATION
         // validateDateTime(resInfo.date, resInfo.time) 
@@ -52,47 +58,51 @@ export default function Home() {
                 "Content-Type": "application/json"
             },
         })
+        if (response.ok) {
+            console.log("SUCCESS")
+        }
     }
 
     return (
-        <div className={styles.home}>
+        <Wrapper>
             <h1>Book your date</h1>
-            <TextField 
-                id='clientName'
-                type='text'
-                label='Name' 
-                placeholder='Enter your name' 
-                onChange={onResChange}
-                value={resData.name}
-            />
-            <Dropdown 
-                id='haircut'
-                label='Style' 
-                onChange={onResChange}
-                options={haircuts}
-            />
-            <TextField 
-                id='date'
-                type='date'
-                label='Date' 
-                placeholder='Choose a date'
-                onChange={onResChange}
-                value={resData.date}
-            />
-            <Dropdown 
-                id='time'
-                label='Time' 
-                onChange={onResChange}
-                options={openTimes}
-            />
-            <div>
-                <SharedButton 
-                    content='Reserve'
-                    onclick={submitRes}
+            <form> 
+                <TextField 
+                    id='clientName'
+                    type='text'
+                    label='Name' 
+                    placeholder='Enter your name' 
+                    onChange={onResChange}
+                    value={resData.name}
                 />
-                <Link href='/bookings'>TO RESERVATIONS</Link>
-            </div>
-            
-        </div>
+                <Dropdown 
+                    id='haircut'
+                    label='Style' 
+                    onChange={onResChange}
+                    options={haircuts}
+                />
+                <TextField 
+                    id='date'
+                    type='date'
+                    label='Date' 
+                    placeholder='Choose a date'
+                    onChange={onResChange}
+                    value={resData.date}
+                />
+                <Dropdown 
+                    id='time'
+                    label='Time' 
+                    onChange={onResChange}
+                    options={openTimes}
+                />
+                <div>
+                    <SharedButton 
+                        content='Reserve'
+                        onclick={submitRes}
+                    />
+                    <Link href='/bookings'>TO RESERVATIONS</Link>
+                </div>
+            </form>
+        </Wrapper>
     )
 }

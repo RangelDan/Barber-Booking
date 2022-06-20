@@ -6,6 +6,7 @@ const Dropdown = ({
         <div className={styles.dropDown}>
             <label>{`${label}: `}
                 <select 
+                    required
                     id={id} 
                     onBlur={onChange} 
                     value={value}

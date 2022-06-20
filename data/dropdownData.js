@@ -1,9 +1,9 @@
 export const haircuts = [
-    ' ', 'Fade', 'Mohawk', 'Taper', 'Combover', 'Shaved'
+    '', 'Fade', 'Mohawk', 'Taper', 'Combover', 'Shaved'
 ]
 
 export const openTimes = [
-    ' ', 
+    '', 
     '10:00',
     '10:30',
     '11:00',

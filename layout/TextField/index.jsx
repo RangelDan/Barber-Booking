@@ -11,6 +11,7 @@ const TextField = ({
                     value={value}
                     id={id}
                     onChange={onChange}
+                    required
                 />
             </label>
         </div>
