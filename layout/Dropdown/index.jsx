@@ -1,7 +1,9 @@
+import styles from '../Dropdown/index.module.scss'
+
 const Dropdown = ({ 
     label, onChange, value, id, options 
     }) => (
-        <div>
+        <div className={styles.dropDown}>
             <label>{`${label}: `}
                 <select 
                     id={id} 

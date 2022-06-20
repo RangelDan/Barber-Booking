@@ -1,6 +1,8 @@
-export default function Wrapper(children) {
+import styles from '../Wrapper/index.module.scss'
+
+export default function Wrapper({ children }) {
     return (
-        <div>
+        <div className={styles.wrapper}>
             {children}
         </div>
     )

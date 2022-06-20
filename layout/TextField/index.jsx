@@ -1,7 +1,10 @@
+import styles from '../TextField/index.module.scss'
+
 const TextField = ({ 
     onChange, value, type, id, label, placeholder }) => (
-        <div>
-            <label>{`${label}: `}
+        <div className={styles.textField}>
+            <label>
+                {`${label}: `}
                 <input 
                     type={type} 
                     placeholder={placeholder}

@@ -4,14 +4,36 @@ import { haircuts, openTimes } from '../../data/dropdownData'
 import Dropdown from "../../layout/Dropdown";
 import SharedButton from "../../layout/SharedButton";
 import TextField from "../../layout/TextField";
+import styles from "../HomeComponent/index.module.scss";
+// import validate from ""
 
 export default function Home() {
-    const [resData, setResData] = useState({});
+    const [resData, setResData] = useState({})
+    const [allRes, setAllRes] = useState()
+    // TODO: ERROR STATE
+    // const [errs, setErrs] = useState(false)
 
-
+    // const getRes = async () => {
+    //     const response = await fetch('/api/reservations')
+    //     const data = await response.json()
+    //     setAllRes(data)
+    //     return data;
+    // }
+    
     const onResChange = (e) => {
         setResData({...resData, [e.target.id]: e.target.value })
     }
+
+    // const validateDateTime = ( resDate, resTime ) => {
+    //     const reservations = getRes()
+    //     console.log(reservations)
+    //     for(let i=0; i<reservations.length; i++)
+    //         if(reservations[i].date === resDate && reservations[i].time === resTime) {
+    //             setErrs(true)
+    //             console.log('NICE, ERRORS')
+    //         }
+    //         console.log('CLEEEAANNN')
+    // }
 
     const submitRes = async () => {
         const resInfo = {
@@ -20,6 +42,9 @@ export default function Home() {
             date: resData.date,
             time: resData.time
         }
+
+        // TODO: ADD VALIDATION
+        // validateDateTime(resInfo.date, resInfo.time) 
         const response = await fetch('/api/reservations', {
             method: 'POST',
             body: JSON.stringify({ resInfo }),
@@ -30,8 +55,8 @@ export default function Home() {
     }
 
     return (
-        <div>
-            <h2>Book your date</h2>
+        <div className={styles.home}>
+            <h1>Book your date</h1>
             <TextField 
                 id='clientName'
                 type='text'
