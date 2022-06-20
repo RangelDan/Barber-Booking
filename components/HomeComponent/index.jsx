@@ -5,13 +5,14 @@ import Dropdown from "../../layout/Dropdown";
 import SharedButton from "../../layout/SharedButton";
 import TextField from "../../layout/TextField";
 import Wrapper from "../../layout/Wrapper"
+import { validate } from "./validate";
 // import validate from ""
 
 export default function Home() {
     const [resData, setResData] = useState({})
     const [allRes, setAllRes] = useState()
     // TODO: ERROR STATE
-    // const [errs, setErrs] = useState(false)
+    const [errs, setErrs] = useState()
 
     // const getRes = async () => {
     //     const response = await fetch('/api/reservations')
@@ -42,11 +43,8 @@ export default function Home() {
             date: resData.date,
             time: resData.time
         }
-        if (!resInfo.clientName || resInfo.clientName == " ") {
-            return false;
-        }
-        if (!resInfo.date || !resInfo.time || !resInfo.haircut) {
-            return false;
+        if (validate(resInfo) == false) {
+            return false
         }
 
         // TODO: ADD VALIDATION
@@ -67,6 +65,7 @@ export default function Home() {
         <Wrapper>
             <h1>Book your date</h1>
             <form> 
+                {/* <Form onResChange={onResChange} resData={resData}/> */}
                 <TextField 
                     id='clientName'
                     type='text'
