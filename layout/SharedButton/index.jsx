@@ -1,6 +1,6 @@
 export default function SharedButton({ content, onclick }) {
     return (
-        <button onClick={onclick} type='submit'>
+        <button onClick={onclick}>
             {content}
         </button>
     )

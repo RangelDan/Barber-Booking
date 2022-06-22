@@ -9,15 +9,14 @@ import s from "../HomeComponent/index.module.scss"
 
 export default function Home() {
     const [resData, setResData] = useState({})
-    const [allRes, setAllRes] = useState()
-    // TODO: ERROR STATE
-    const [errs, setErrs] = useState()
+    const [errs, setErrs] = useState(false)
     
     const onResChange = (e) => {
         setResData({...resData, [e.target.id]: e.target.value })
     }
 
-    const submitRes = async () => {
+    const submitRes = async (event) => {
+        event.preventDefault();
         const resInfo = {
             clientName: resData.clientName,
             haircut: resData.haircut,
@@ -25,11 +24,12 @@ export default function Home() {
             time: resData.time
         }
         if (validate(resInfo) == false) {
+            setErrs('Please fill in all fields')
             return false
+        } else {
+            setErrs(false)
         }
 
-        // TODO: ADD VALIDATION
-        // validateDateTime(resInfo.date, resInfo.time) 
         const response = await fetch('/api/reservations', {
             method: 'POST',
             body: JSON.stringify({ resInfo }),
@@ -37,8 +37,11 @@ export default function Home() {
                 "Content-Type": "application/json"
             },
         })
-        if (response.ok) {
-            console.log("SUCCESS")
+        if (!response.ok) {
+            setErrs('*Time and date unavailable')
+        } else {
+            setErrs(false)
+            alert('Appointment booked!')
         }
     }
 
@@ -46,6 +49,9 @@ export default function Home() {
         <div className={s.bg}>
             <Wrapper>
                 <h1>Reserve</h1>
+                {errs ? 
+                    <p className={s.errs}>{errs}</p> : null
+                }
                 <form> 
                     {/* <Form onResChange={onResChange} resData={resData}/> */}
                     <TextField 
