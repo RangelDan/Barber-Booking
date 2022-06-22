@@ -1,8 +1,11 @@
 .textField {
+    padding-bottom: 15px;
     label {
-        // margin-bottom: 10px;
+        font-weight: 500;
     }
     input {
-        margin: 20px 5px 10px 10px;
+        margin-top: 5px;
+        display: block;
+        // margin: 20px 5px 10px 10px;
     }
 }

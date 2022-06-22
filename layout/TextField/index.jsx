@@ -4,16 +4,16 @@ const TextField = ({
     onChange, value, type, id, label, placeholder }) => (
         <div className={styles.textField}>
             <label>
-                {`${label}: `}
-                <input 
-                    type={type} 
-                    placeholder={placeholder}
-                    value={value}
-                    id={id}
-                    onChange={onChange}
-                    required
-                />
+                {`${label} `}
             </label>
+            <input 
+                type={type} 
+                placeholder={placeholder}
+                value={value}
+                id={id}
+                onChange={onChange}
+                required
+            />
         </div>
     )
 

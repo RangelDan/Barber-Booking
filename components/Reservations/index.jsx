@@ -6,7 +6,6 @@ import s from "../Reservations/index.module.scss"
 
 export default function Reservations() {
     const [resData, setResData] = useState()
-    const newArray = []
     const newDate = new Date()
     const day = newDate.getDate()
     const month = newDate.getMonth() + 1
@@ -21,29 +20,29 @@ export default function Reservations() {
     }
     
     return (
-        <Wrapper>
-            {!resData ?
-            <div>
+        <div>
+            { !resData ?
+            <Wrapper>
                 <h2>Todays Bookings</h2>
-                    <SharedButton 
-                        content='See Reservations'
-                        onclick={getRes}
-                    /> 
-                </div> : null}
-
-                <Link href='/'>BACK</Link>
+            </Wrapper> : null } 
+            <div className={s.date}>
+                <h2>{today}</h2>
+                <SharedButton 
+                    content='See Reservations'
+                    onclick={getRes}
+                /> 
                 {resData?.map((res) => {
                     if (res.date == today) {
                         return(
-                        <div key={res.name} className={s.res}>
-                            <p>NAME: {res.name}</p>
-                            <p>STYLE: {res.haircut}</p>
-                            <p>DATE: {res.date}</p>
-                            <p>TIME: {res.time}</p>
-                        </div> 
+                            <div key={res.name} className={s.res}>
+                                <p><b>NAME:</b> {res.name}</p>
+                                <p><b>STYLE:</b> {res.haircut}</p>
+                                <p><b>TIME:</b> {res.time}</p>
+                            </div> 
                         )   
                     }
                 })}
-
-        </Wrapper>    )
+            </div>
+        </div>    
+    )
 }

@@ -4,7 +4,7 @@ const Dropdown = ({
     label, onChange, value, id, options 
     }) => (
         <div className={styles.dropDown}>
-            <label>{`${label}: `}
+            <label>{`${label} `}
                 <select 
                     required
                     id={id} 
