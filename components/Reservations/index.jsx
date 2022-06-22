@@ -21,10 +21,6 @@ export default function Reservations() {
     
     return (
         <div>
-            { !resData ?
-            <Wrapper>
-                <h2>Todays Bookings</h2>
-            </Wrapper> : null } 
             <div className={s.date}>
                 <h2>{today}</h2>
                 <SharedButton 

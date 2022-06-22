@@ -43,45 +43,47 @@ export default function Home() {
     }
 
     return (
-        <Wrapper>
-            <h1>Book your date</h1>
-            <form> 
-                {/* <Form onResChange={onResChange} resData={resData}/> */}
-                <TextField 
-                    id='clientName'
-                    type='text'
-                    label='Name' 
-                    placeholder='Enter your name' 
-                    onChange={onResChange}
-                    value={resData.name}
-                />
-                <Dropdown 
-                    id='haircut'
-                    label='Style' 
-                    onChange={onResChange}
-                    options={haircuts}
-                />
-                <TextField 
-                    id='date'
-                    type='date'
-                    label='Date' 
-                    placeholder='Choose a date'
-                    onChange={onResChange}
-                    value={resData.date}
-                />
-                <Dropdown 
-                    id='time'
-                    label='Time' 
-                    onChange={onResChange}
-                    options={openTimes}
-                />
-                <div className={s.button}>
-                    <SharedButton 
-                        content='Reserve'
-                        onclick={submitRes}
+        <div className={s.bg}>
+            <Wrapper>
+                <h1>Reserve</h1>
+                <form> 
+                    {/* <Form onResChange={onResChange} resData={resData}/> */}
+                    <TextField 
+                        id='clientName'
+                        type='text'
+                        label='Name' 
+                        placeholder='Enter your name' 
+                        onChange={onResChange}
+                        value={resData.name}
                     />
-                </div>
-            </form>
-        </Wrapper>
+                    <Dropdown 
+                        id='haircut'
+                        label='Style' 
+                        onChange={onResChange}
+                        options={haircuts}
+                    />
+                    <TextField 
+                        id='date'
+                        type='date'
+                        label='Date' 
+                        placeholder='Choose a date'
+                        onChange={onResChange}
+                        value={resData.date}
+                    />
+                    <Dropdown 
+                        id='time'
+                        label='Time' 
+                        onChange={onResChange}
+                        options={openTimes}
+                    />
+                    <div className={s.button}>
+                        <SharedButton 
+                            content='SAVE'
+                            onclick={submitRes}
+                        />
+                    </div>
+                </form>
+            </Wrapper>
+        </div>
     )
 }
