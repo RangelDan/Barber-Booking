@@ -5,11 +5,13 @@ import SharedButton from "../../layout/SharedButton";
 import TextField from "../../layout/TextField";
 import Wrapper from "../../layout/Wrapper"
 import { validate } from "./validate";
-import s from "../HomeComponent/index.module.scss"
+import S from "../HomeComponent/index.module.scss"
+import Background from "../../layout/Background";
 
 export default function Home() {
     const [resData, setResData] = useState({})
     const [errs, setErrs] = useState(false)
+    const bg = '/assets/logo.jpg'
     
     const onResChange = (e) => {
         setResData({...resData, [e.target.id]: e.target.value })
@@ -46,14 +48,14 @@ export default function Home() {
     }
 
     return (
-        <div className={s.bg}>
+        <Background img={bg}>
             <Wrapper>
-                <h1>Reserve</h1>
                 {errs ? 
-                    <p className={s.errs}>{errs}</p> : null
+                    <p className={S.errs}>{errs}</p> : null
                 }
-                <form> 
+                <form className={S.forms}> 
                     {/* <Form onResChange={onResChange} resData={resData}/> */}
+                    <div>
                     <TextField 
                         id='clientName'
                         type='text'
@@ -82,14 +84,15 @@ export default function Home() {
                         onChange={onResChange}
                         options={openTimes}
                     />
-                    <div className={s.button}>
+                    <div className={S.button}>
                         <SharedButton 
                             content='SAVE'
                             onclick={submitRes}
                         />
                     </div>
+                    </div>
                 </form>
             </Wrapper>
-        </div>
+        </Background>
     )
 }
