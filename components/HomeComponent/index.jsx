@@ -50,12 +50,10 @@ export default function Home() {
     return (
         <Background img={bg}>
             <Wrapper>
-                {errs ? 
-                    <p className={S.errs}>{errs}</p> : null
-                }
                 <form className={S.forms}> 
-                    {/* <Form onResChange={onResChange} resData={resData}/> */}
-                    <div>
+                    {errs ? 
+                        <p className={S.errs}>{errs}</p> : null
+                    }
                     <TextField 
                         id='clientName'
                         type='text'
@@ -89,7 +87,6 @@ export default function Home() {
                             content='SAVE'
                             onclick={submitRes}
                         />
-                    </div>
                     </div>
                 </form>
             </Wrapper>
